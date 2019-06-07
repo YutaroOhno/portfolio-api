@@ -1,0 +1,12 @@
+FROM golang:1.10.3-alpine3.7
+
+RUN apk update \
+    && apk add --no-cache git \
+    && go get -u github.com/codegangsta/gin \
+    && go get -u github.com/golang/dep/cmd/dep
+
+COPY . /go/src/portfolio-api
+
+WORKDIR /go/src/portfolio-api
+
+CMD dep ensure -vendor-only && gin -p 9800
