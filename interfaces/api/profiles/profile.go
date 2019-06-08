@@ -26,7 +26,7 @@ func NewProfileController(db *db.DB, logging logging.Logging) *ProfileController
 }
 
 func (controller *ProfileController) GetUserProfile(c *gin.Context) {
-	userId, err := strconv.Atoi(c.Param("user_id"))
+	userId, err := strconv.Atoi(c.Param("user_id"))	
 	if err != nil {
 		c.JSON(http.StatusBadRequest, err.Error())
 		return

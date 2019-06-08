@@ -18,12 +18,6 @@ func Run(db *db.DB, logging logging.Logging) {
 		AllowHeaders: []string{"Origin"},
 	}))
 
-	// 全てのtodo取得
-	// todoController := todos.NewTodoController(db, logging)
-	// router.GET("/todos", todoController.GetAllTodo)
-	// router.POST("/todos", todoController.CreateTodo)
-	// router.DELETE("/todos/:id", todoController.DeleteTodo)
-
 	// ユーザーのプロフィール情報を取得
 	profileController := profiles.NewProfileController(db,logging)
 	router.GET("/users/:user_id/profile", profileController.GetUserProfile)
