@@ -2,28 +2,21 @@ package db
 
 import (
 	"github.com/jinzhu/gorm"
-	_ "github.com/jinzhu/gorm/dialects/mysql"
+	_ "github.com/jinzhu/gorm/dialects/postgres"
 	"os"
 )
 
-type Mysql struct {
+type Postgre struct {
 	gormDB *gorm.DB
 }
 
-func NewMysql() *Mysql {
-	return &Mysql{}
+func NewMysql() *Postgre {
+	return &Postgre{}
 }
 
-func (mysql *Mysql) Open() *DB {
-	DBMS := "mysql"
-	USER := os.Getenv("DB_USER")
-	PASS := os.Getenv("DB_PASSWORD")
-	PROTOCOL := os.Getenv("PROTOCOL")
-	DBNAME := os.Getenv("DB_NAME")
-
-	CONNECT := USER + ":" + PASS + "@" + PROTOCOL + "/" + DBNAME
-	db, err := gorm.Open(DBMS, CONNECT)
-
+func (mysql *Postgre) Open() *DB {
+	CONNECT := "host=" + os.Getenv("DB_HOST") + " port=" + os.Getenv("DB_PORT") + " user=" + os.Getenv("DB_USER") + " password=" + os.Getenv("DB_PASSWORD") + " dbname=" + os.Getenv("DB_NAME") + " sslmode=disable"
+	db, err := gorm.Open("postgres", CONNECT)
 	if err != nil {
 		panic(err.Error())
 	}
