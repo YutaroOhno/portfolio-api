@@ -14,7 +14,7 @@ func main() {
 	defer db.Close()
 
 
-	// 環境によってlogginを分ける想定。現状ローカルのみ。
+	// 環境によってlogginを分ける想定。現状logrusのみ。
 	var ulogging ulogging.Logging
 	ulogging = logging.NewLogrusLogging()
 
