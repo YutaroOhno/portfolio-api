@@ -9,7 +9,7 @@ import (
 
 func main() {
 	var newDB db.Database
-	newDB = db.NewMysql()
+	newDB = db.NewPostgres()
 	db := newDB.Open()
 	defer db.Close()
 

@@ -8,6 +8,7 @@ import (
 	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
 	"portfolio-api/usecases/logging"
+	"os"
 )
 
 func Run(db *db.DB, logging logging.Logging) {
@@ -15,7 +16,7 @@ func Run(db *db.DB, logging logging.Logging) {
 
 	router.Use(cors.New(cors.Config{
 		//とりあえずフロントからのアクセスを許可したいので、記述。
-		AllowOrigins: []string{"http://localhost:8080"},
+		AllowOrigins: []string{os.Getenv("CLIENT_ORIGIN")},
 		AllowMethods: []string{"GET", "PUT", "PATCH", "POST", "OPTIONS", "DELETE"},
 		AllowHeaders: []string{"Origin"},
 	}))

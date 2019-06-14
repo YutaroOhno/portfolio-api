@@ -30,7 +30,7 @@ services:
       DB_NAME: portfolio_api_development
       DB_USER: yutaro
       DB_PASSWORD: yutaro
-      # PROTOCOL: tcp(db)
+      CLIENT_ORIGIN: http://localhost:8080
     ports:
       - '9800:9800'
     tty:
