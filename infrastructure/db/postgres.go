@@ -3,7 +3,9 @@ package db
 import (
 	"github.com/jinzhu/gorm"
 	_ "github.com/jinzhu/gorm/dialects/postgres"
+	"github.com/lib/pq"
 	"os"
+	"fmt"
 )
 
 type Postgre struct {
@@ -15,8 +17,20 @@ func NewPostgres() *Postgre {
 }
 
 func (postgres *Postgre) Open() *DB {
-	CONNECT := "host=" + os.Getenv("DB_HOST") + " port=" + os.Getenv("DB_PORT") + " user=" + os.Getenv("DB_USER") + " password=" + os.Getenv("DB_PASSWORD") + " dbname=" + os.Getenv("DB_NAME") + " sslmode=disable"
-	db, err := gorm.Open("postgres", CONNECT)
+	// herokuの場合
+	connection := ""
+	if os.Getenv("ENV") == "prod" {
+		url := os.Getenv("DATABASE_URL")
+		connection, err := pq.ParseURL(url)
+		if err != nil {
+			fmt.Println("エラー")
+		}
+		connection += " sslmode=require"
+	} else  {
+		connection = os.Getenv("DATABASE_URL")
+	}
+
+	db, err := gorm.Open("postgres", connection)
 	if err != nil {
 		panic(err.Error())
 	}
