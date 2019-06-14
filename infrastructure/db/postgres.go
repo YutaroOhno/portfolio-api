@@ -5,25 +5,24 @@ import (
 	_ "github.com/jinzhu/gorm/dialects/postgres"
 	"github.com/lib/pq"
 	"os"
-	"fmt"
 )
 
-type Postgre struct {
+type Postgres struct {
 	gormDB *gorm.DB
 }
 
-func NewPostgres() *Postgre {
-	return &Postgre{}
+func NewPostgres() *Postgres {
+	return &Postgres{}
 }
 
-func (postgres *Postgre) Open() *DB {
-	// herokuの場合
+func (postgres *Postgres) Open() *DB {
+	// 本番環境（heroku）を考慮
 	connection := ""
 	if os.Getenv("ENV") == "prod" {
 		url := os.Getenv("DATABASE_URL")
 		connection, err := pq.ParseURL(url)
 		if err != nil {
-			fmt.Println("エラー")
+			panic(err.Error())
 		}
 		connection += " sslmode=require"
 	} else  {

@@ -9,4 +9,4 @@ COPY . /go/src/portfolio-api
 
 WORKDIR /go/src/portfolio-api
 
-CMD dep ensure -vendor-only && gin -p $PORT
+CMD dep ensure -vendor-only && gin -p 9800

@@ -13,7 +13,6 @@ func main() {
 	db := newDB.Open()
 	defer db.Close()
 
-
 	// 環境によってlogginを分ける想定。現状logrusのみ。
 	var ulogging ulogging.Logging
 	ulogging = logging.NewLogrusLogging()
