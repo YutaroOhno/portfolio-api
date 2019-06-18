@@ -39,23 +39,23 @@
   version = "v1.3.1"
 
 [[projects]]
-  digest = "1:94845588f4062c90f327551b2a50262fae846d1a65beba8058efbdbaaaca7f9e"
+  digest = "1:c1a831110975734d22f89140e720da0bb5575b2516b37b2f242a5ea5e3e1e563"
   name = "github.com/jinzhu/gorm"
   packages = [
     ".",
     "dialects/postgres",
   ]
   pruneopts = "UT"
-  revision = "b7156195f7f3415f97c20abbd6aff894b847fee8"
-  version = "v1.9.8"
+  revision = "01b66011427614f01e84a473b0303c917179f2a0"
+  version = "v1.9.9"
 
 [[projects]]
-  branch = "master"
   digest = "1:01ed62f8f4f574d8aff1d88caee113700a2b44c42351943fa73cc1808f736a50"
   name = "github.com/jinzhu/inflection"
   packages = ["."]
   pruneopts = "UT"
   revision = "f5c5f50e6090ae76a29240b61ae2a90dd810112e"
+  version = "v1.0.0"
 
 [[projects]]
   digest = "1:f5a2051c55d05548d2d4fd23d244027b59fbd943217df8aa3b5e170ac2fd6e1b"
@@ -128,11 +128,11 @@
 
 [[projects]]
   branch = "master"
-  digest = "1:010311506e3917b54487c35a4277e2709678a40c1587d82492c40b78b6a0a01d"
+  digest = "1:249fd56fb36a223aee164e2dc35e3b3a1b92dd3873dfb60216280b9fb9d4a784"
   name = "golang.org/x/sys"
   packages = ["unix"]
   pruneopts = "UT"
-  revision = "93c9922d18aeb82498a065f07aec7ad7fa60dfb7"
+  revision = "15dcb6c0061f497a3f66e3ea034b629c6dd4d99e"
 
 [[projects]]
   digest = "1:cbc72c4c4886a918d6ab4b95e347ffe259846260f99ebdd8a198c2331cf2b2e9"
