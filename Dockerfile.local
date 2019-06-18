@@ -1,7 +1,5 @@
 FROM golang:1.10.3-alpine3.7
 
-CMD git config --global url."git@github.com".insteadOf https://github.com/ && git config --global --unset http.proxy && git config --global --unset https.proxy
-
 RUN apk update \
     && apk add --no-cache git \
     && go get -u github.com/codegangsta/gin \
