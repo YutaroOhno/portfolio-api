@@ -5,6 +5,7 @@ import (
 	_ "github.com/jinzhu/gorm/dialects/postgres"
 	"github.com/lib/pq"
 	"os"
+	"fmt"
 )
 
 type Postgres struct {
@@ -29,6 +30,8 @@ func (postgres *Postgres) Open() *DB {
 		connection = os.Getenv("DATABASE_URL")
 	}
 
+	fmt.Println("コネクション")
+	fmt.Println(connection)
 	db, err := gorm.Open("postgres", connection)
 	if err != nil {
 		panic(err.Error())
