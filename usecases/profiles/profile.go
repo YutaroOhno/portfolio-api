@@ -7,6 +7,7 @@ import (
 	"portfolio-api/usecases/repositories"
 	"portfolio-api/usecases"
 	"portfolio-api/usecases/logging"
+	"os"
 )
 
 type ProfileUsecase struct {
@@ -17,6 +18,7 @@ type ProfileUsecase struct {
 
 func (usecase *ProfileUsecase) GetUserProfile(userId int) (*ports.ProfileOutputPort, *usecases.UError) {
 	profile, err := usecase.ProfileRepository.Find(userId, usecase.DB.GormDB)
+	profile.Avatar = os.Getenv("BUCKET_PATH") + profile.Avatar
 	if uerr := usecases.GetUErrorByError(err); uerr != nil {
 		usecase.Logging.Error(uerr)
 		return nil, uerr

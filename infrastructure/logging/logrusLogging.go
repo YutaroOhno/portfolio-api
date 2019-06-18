@@ -19,7 +19,7 @@ func NewLogrusLogging() *LogrusLogging {
 	logger.Out = os.Stdout
 	logger.Formatter = &logrus.JSONFormatter{}
 
-	return  &LogrusLogging{
+	return &LogrusLogging{
 		Client: logger,
 	}
 }
