@@ -7,4 +7,5 @@ type Work struct {
 	SubTitle    string `gorm:"not_null" json:"sub_title"`
 	Description string `json:"description"`
 	URL 		string `json:"url"`
+	ImagePath 	string `json:"image_path"`
 }

@@ -7,6 +7,7 @@ import (
 	"portfolio-api/usecases/logging"
 	"portfolio-api/usecases/ports"
 	"portfolio-api/usecases"
+	"os"
 )
 
 type WorkUsecase struct {
@@ -17,6 +18,9 @@ type WorkUsecase struct {
 
 func (usecase  *WorkUsecase) GetUserWorks(userId int) (*ports.WorksOutputPort, *usecases.UError) {
 	works, err := usecase.WorkRepository.Find(userId, usecase.DB.GormDB)
+	for i := 0; i < len(works); i++ {
+        works[i].ImagePath = os.Getenv("BUCKET_PATH") + works[i].ImagePath
+	}
 	if uerr := usecases.GetUErrorByError(err); uerr != nil {
 		usecase.Logging.Error(uerr)
 		return nil, uerr
