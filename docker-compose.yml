@@ -12,7 +12,7 @@ services:
   app:
     build:
       context: .
-      dockerfile: Dockerfile.local
+      dockerfile: Dockerfile.dev
     depends_on:
       - db
     volumes:
