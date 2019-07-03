@@ -21,6 +21,7 @@ services:
     environment:
       CLIENT_ORIGIN: http://localhost:8080
       DATABASE_URL: host=db port=5432 user=yutaro password=yutaro dbname=portfolio_api_development sslmode=disable
+      TO_MAIL_ADDRESS: hoge@example.com
       ENV: local
     ports:
       - '9800:9800'

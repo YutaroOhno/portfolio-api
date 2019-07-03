@@ -17,7 +17,7 @@ func NewMailer() *GoMailer {
 
 func (mailer *GoMailer) Send(name string, address string, content string) error {
 	mailer.Message.SetHeader("From", address)
-	mailer.Message.SetHeader("To", os.Getenv("MY_MAIL_ADDRESS"))
+	mailer.Message.SetHeader("To", os.Getenv("TO_MAIL_ADDRESS"))
 	mailer.Message.SetHeader("Subject", name)
 	mailer.Message.SetBody("text/plain", content)
 

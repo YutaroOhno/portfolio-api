@@ -20,7 +20,7 @@ func Run(db *db.DB, logging logging.Logging, mailer mailer.Mailer) {
 		//とりあえずフロントからのアクセスを許可したいので、記述。
 		AllowOrigins: []string{os.Getenv("CLIENT_ORIGIN")},
 		AllowMethods: []string{"GET", "PUT", "PATCH", "POST", "OPTIONS", "DELETE"},
-		AllowHeaders: []string{"Origin"},
+		AllowHeaders: []string{"Content-Type"},
 	}))
 
 	// ユーザーのプロフィール情報を取得
