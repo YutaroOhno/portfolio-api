@@ -45,6 +45,10 @@
   name = "github.com/sirupsen/logrus"
   version = "1.4.2"
 
+[[constraint]]
+  name = "gopkg.in/gomail.v2"
+  branch = "v2"
+
 [prune]
   go-tests = true
   unused-packages = true

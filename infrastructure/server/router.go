@@ -5,13 +5,15 @@ import (
 	"portfolio-api/interfaces/api/profiles"
 	"portfolio-api/interfaces/api/skills"
 	"portfolio-api/interfaces/api/works"
+	"portfolio-api/interfaces/api/contacts"
 	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
 	"portfolio-api/usecases/logging"
+	"portfolio-api/usecases/mailer"
 	"os"
 )
 
-func Run(db *db.DB, logging logging.Logging) {
+func Run(db *db.DB, logging logging.Logging, mailer mailer.Mailer) {
 	router := gin.Default()
 
 	router.Use(cors.New(cors.Config{
@@ -33,5 +35,9 @@ func Run(db *db.DB, logging logging.Logging) {
 	workController := works.NewWorkController(db,logging)
 	router.GET("/users/:user_id/works", workController.GetUserWorks)
 
+	// コンタクト
+	contactController := contacts.NewContactController(mailer, logging)
+	router.POST("/users/:user_id/contact", contactController.SendMail)
+	
 	router.Run()
 }

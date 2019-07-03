@@ -4,7 +4,9 @@ import (
 	"portfolio-api/infrastructure/db"
 	"portfolio-api/infrastructure/server"
 	"portfolio-api/infrastructure/logging"
+	"portfolio-api/infrastructure/mailer"
 	ulogging "portfolio-api/usecases/logging"
+	umailer "portfolio-api/usecases/mailer"
 )
 
 func main() {
@@ -17,5 +19,7 @@ func main() {
 	var ulogging ulogging.Logging
 	ulogging = logging.NewLogrusLogging()
 
-	server.Run(db, ulogging)
+	var umailer umailer.Mailer
+	umailer = mailer.NewMailer()
+	server.Run(db, ulogging, umailer)
 }
