@@ -32,7 +32,6 @@ func NewContactController(mailer mailer.Mailer, logging logging.Logging) *Contac
 
 func (controller *ContactController) SendMail(c *gin.Context) {
 	var json contactJSON
-
 	if err := c.Bind(&json); err != nil {
 		c.JSON(http.StatusBadRequest, "うーん、期待するものが送られてきていないなあ")
 		return
@@ -46,9 +45,9 @@ func (controller *ContactController) SendMail(c *gin.Context) {
 
 	err := controller.Usecase.SendMail(input)
 	if err != nil {
-		c.JSON(http.StatusBadRequest, "メール送信失敗・・すまぬ多分APIかメールサーバーが死んでる・・・")
+		c.JSON(http.StatusBadRequest, "メール送信失敗・・すまぬ何かがおかしい")
 		return
 	}
 
-	c.JSON(http.StatusOK, "メール送信おけ")
+	c.JSON(http.StatusOK, "Success")
 }
