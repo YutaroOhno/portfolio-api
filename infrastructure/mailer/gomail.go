@@ -23,7 +23,7 @@ func (mailer *GoMailer) Send(name string, address string, content string) error 
 
 	var d *gomail.Dialer
 	if os.Getenv("ENV") == "prod" {
-		d = gomail.NewDialer("smtp.example.com", 587, os.Getenv("SENDGRID_USERNAME"), os.Getenv("SENDGRID_PASSWORD"))
+		d = gomail.NewDialer("smtp.sendgrid.net", 587, os.Getenv("SENDGRID_USERNAME"), os.Getenv("SENDGRID_PASSWORD"))
 	} else {
 		d = gomail.NewDialer("mailhog", 1025, "", "")
 	}
