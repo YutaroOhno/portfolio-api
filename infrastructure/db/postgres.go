@@ -19,7 +19,7 @@ func (postgres *Postgres) Open() *DB {
 	// 本番環境（heroku）を考慮
 	var (
 		connection string
-		err error
+		err        error
 	)
 	if os.Getenv("ENV") == "prod" {
 		url := os.Getenv("DATABASE_URL")
@@ -28,7 +28,7 @@ func (postgres *Postgres) Open() *DB {
 			panic(err.Error())
 		}
 		connection += " sslmode=require"
-	} else  {
+	} else {
 		connection = os.Getenv("DATABASE_URL")
 	}
 
