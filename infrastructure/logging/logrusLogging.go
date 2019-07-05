@@ -2,11 +2,11 @@ package logging
 
 import (
 	"github.com/sirupsen/logrus"
-	"runtime"
 	"portfolio-api/usecases"
+	"runtime"
 
-	"os"
 	"fmt"
+	"os"
 )
 
 type LogrusLogging struct {
@@ -32,7 +32,7 @@ func (log *LogrusLogging) Error(uerr *usecases.UError) {
 	trace := uerr.Msg
 	_, file, line, ok := runtime.Caller(1)
 	if ok {
-		trace = trace +fmt.Sprintf("[%s:%d]", file, line)
+		trace = trace + fmt.Sprintf("[%s:%d]", file, line)
 	}
 
 	log.Client.Errorln(trace)
@@ -41,7 +41,6 @@ func (log *LogrusLogging) Error(uerr *usecases.UError) {
 func (log *LogrusLogging) Warning(uerr *usecases.UError) {
 	log.Client.Warningln(uerr)
 }
-
 
 func (log *LogrusLogging) Debug(msg string) {
 	log.Client.Debugln(msg)
