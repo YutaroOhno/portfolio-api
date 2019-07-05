@@ -1,8 +1,8 @@
 package ports
 
 type ProfileOutputPort struct {
-	UserID    	 int    `json:"user_id"`
-	Nickname 	 string `json:"nickname"`
+	UserID       int    `json:"user_id"`
+	Nickname     string `json:"nickname"`
 	Introduction string `json:"introduction"`
-	Avatar 		 string `json:"avatar"`
+	Avatar       string `json:"avatar"`
 }
