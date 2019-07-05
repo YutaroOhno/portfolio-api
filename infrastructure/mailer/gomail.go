@@ -1,8 +1,8 @@
 package mailer
 
 import (
-  "gopkg.in/gomail.v2"
-  "os"
+	"gopkg.in/gomail.v2"
+	"os"
 )
 
 type GoMailer struct {
@@ -31,6 +31,6 @@ func (mailer *GoMailer) Send(name string, address string, content string) error 
 	if err := d.DialAndSend(mailer.Message); err != nil {
 		return err
 	}
-	
+
 	return nil
 }
