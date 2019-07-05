@@ -1,10 +1,10 @@
 package contacts
 
 import (
-	"portfolio-api/usecases/mailer"
-	"portfolio-api/usecases/logging"
-	"portfolio-api/usecases/ports"
 	"portfolio-api/usecases"
+	"portfolio-api/usecases/logging"
+	"portfolio-api/usecases/mailer"
+	"portfolio-api/usecases/ports"
 )
 
 type ContactUsecase struct {
