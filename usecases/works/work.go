@@ -1,25 +1,25 @@
 package works
 
 import (
+	"os"
 	"portfolio-api/entities"
 	"portfolio-api/infrastructure/db"
-	"portfolio-api/usecases/repositories"
+	"portfolio-api/usecases"
 	"portfolio-api/usecases/logging"
 	"portfolio-api/usecases/ports"
-	"portfolio-api/usecases"
-	"os"
+	"portfolio-api/usecases/repositories"
 )
 
 type WorkUsecase struct {
 	WorkRepository repositories.WorkRepository
 	DB             *db.DB
-	Logging 		logging.Logging
+	Logging        logging.Logging
 }
 
-func (usecase  *WorkUsecase) GetUserWorks(userId int) (*ports.WorksOutputPort, *usecases.UError) {
+func (usecase *WorkUsecase) GetUserWorks(userId int) (*ports.WorksOutputPort, *usecases.UError) {
 	works, err := usecase.WorkRepository.Find(userId, usecase.DB.GormDB)
 	for i := 0; i < len(works); i++ {
-        works[i].ImagePath = os.Getenv("BUCKET_PATH") + works[i].ImagePath
+		works[i].ImagePath = os.Getenv("BUCKET_PATH") + works[i].ImagePath
 	}
 	if uerr := usecases.GetUErrorByError(err); uerr != nil {
 		usecase.Logging.Error(uerr)
