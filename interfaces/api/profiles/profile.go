@@ -33,7 +33,7 @@ func (controller *ProfileController) GetUserProfile(c *gin.Context) {
 	}
 
 	profile, uerr := controller.Usecase.GetUserProfile(userId)
-	if err != nil {
+	if uerr != nil {
 		c.JSON(api.GetErrorResponse(uerr))
 		return
 	}

@@ -6,6 +6,7 @@ import (
 	"portfolio-api/usecases/mailer"
 	"portfolio-api/usecases/logging"
 	"portfolio-api/usecases/ports"
+	"portfolio-api/interfaces/api"
 	"net/http"
 )
 
@@ -33,7 +34,7 @@ func NewContactController(mailer mailer.Mailer, logging logging.Logging) *Contac
 func (controller *ContactController) SendMail(c *gin.Context) {
 	var json contactJSON
 	if err := c.Bind(&json); err != nil {
-		c.JSON(http.StatusBadRequest, "うーん、期待するものが送られてきていないなあ")
+		c.JSON(http.StatusBadRequest, err.Error())
 		return
 	}
 
@@ -43,9 +44,9 @@ func (controller *ContactController) SendMail(c *gin.Context) {
 		Content:  json.Content,
 	}
 
-	err := controller.Usecase.SendMail(input)
-	if err != nil {
-		c.JSON(http.StatusBadRequest, "メール送信失敗・・すまぬ何かがおかしい")
+	uerr := controller.Usecase.SendMail(input)
+	if uerr != nil {
+		c.JSON(api.GetErrorResponse(uerr))
 		return
 	}
 
