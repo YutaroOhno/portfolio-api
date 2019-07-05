@@ -2,9 +2,9 @@ package main
 
 import (
 	"portfolio-api/infrastructure/db"
-	"portfolio-api/infrastructure/server"
 	"portfolio-api/infrastructure/logging"
 	"portfolio-api/infrastructure/mailer"
+	"portfolio-api/infrastructure/server"
 	ulogging "portfolio-api/usecases/logging"
 	umailer "portfolio-api/usecases/mailer"
 )
