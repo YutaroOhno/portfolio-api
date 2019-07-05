@@ -6,7 +6,7 @@ import (
 
 type UError struct {
 	Code int
-	Msg string
+	Msg  string
 }
 
 const (
@@ -28,7 +28,7 @@ func GetUErrorByError(err error) *UError {
 
 		return &UError{
 			Code: code,
-			Msg: err.Error(),
+			Msg:  err.Error(),
 		}
 	}
 
