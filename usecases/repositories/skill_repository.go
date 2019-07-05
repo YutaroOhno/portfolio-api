@@ -1,8 +1,8 @@
 package repositories
 
 import (
-	"portfolio-api/entities"
 	"github.com/jinzhu/gorm"
+	"portfolio-api/entities"
 )
 
 type SkillRepository interface {
