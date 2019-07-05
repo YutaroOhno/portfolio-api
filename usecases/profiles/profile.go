@@ -1,19 +1,19 @@
 package profiles
 
 import (
+	"os"
 	"portfolio-api/entities"
 	"portfolio-api/infrastructure/db"
-	"portfolio-api/usecases/ports"
-	"portfolio-api/usecases/repositories"
 	"portfolio-api/usecases"
 	"portfolio-api/usecases/logging"
-	"os"
+	"portfolio-api/usecases/ports"
+	"portfolio-api/usecases/repositories"
 )
 
 type ProfileUsecase struct {
 	ProfileRepository repositories.ProfileRepository
-	DB             *db.DB
-	Logging 		logging.Logging
+	DB                *db.DB
+	Logging           logging.Logging
 }
 
 func (usecase *ProfileUsecase) GetUserProfile(userId int) (*ports.ProfileOutputPort, *usecases.UError) {
@@ -29,9 +29,9 @@ func (usecase *ProfileUsecase) GetUserProfile(userId int) (*ports.ProfileOutputP
 
 func createOutputPort(profile entities.Profile) *ports.ProfileOutputPort {
 	return &ports.ProfileOutputPort{
-		UserID:    	   profile.UserID,
-		Nickname: 	   profile.Nickname,
-		Introduction:  profile.Introduction,
-		Avatar: 	   profile.Avatar,
+		UserID:       profile.UserID,
+		Nickname:     profile.Nickname,
+		Introduction: profile.Introduction,
+		Avatar:       profile.Avatar,
 	}
 }
