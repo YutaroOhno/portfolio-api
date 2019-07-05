@@ -1,9 +1,8 @@
 package entities
 
 type Profile struct {
-	UserID    	 int    `gorm:"primary_key"`
-	Nickname 	 string `gorm:"not null"`
+	UserID       int    `gorm:"primary_key"`
+	Nickname     string `gorm:"not null"`
 	Introduction string `gorm:"not null"`
-	Avatar 		 string
+	Avatar       string
 }
-
