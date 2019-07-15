@@ -10,6 +10,7 @@ type ProfileRepository struct {
 
 func (repo *ProfileRepository) Find(userID int, db *gorm.DB) (entities.Profile, error) {
 	var profile entities.Profile
-	db.First(&profile, "user_id = ?", userID)
+	
+	db.First(&profile, "user_id = ?", userID).Related(&profile.Link, "Link")
 	return profile, nil
 }

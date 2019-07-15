@@ -5,4 +5,5 @@ type Profile struct {
 	Nickname     string `gorm:"not null"`
 	Introduction string `gorm:"not null"`
 	Avatar       string
+    Link 		 []Link   `gorm:"ForeignKey:UserId"`
 }

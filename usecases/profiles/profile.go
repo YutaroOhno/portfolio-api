@@ -33,5 +33,6 @@ func createOutputPort(profile entities.Profile) *ports.ProfileOutputPort {
 		Nickname:     profile.Nickname,
 		Introduction: profile.Introduction,
 		Avatar:       profile.Avatar,
+		Link:         profile.Link,
 	}
 }
