@@ -17,7 +17,6 @@ type contactJSON struct {
 	Content  string `binding:"required" json:"content"`
 }
 
-
 type ContactController struct {
 	Usecase *contacts.ContactUsecase
 }

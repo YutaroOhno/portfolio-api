@@ -1,0 +1,61 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: portfolio-api
+  labels:
+    app: portfolio-api
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: portfolio-api
+    spec:
+      containers:
+        - name: api
+          image: gcr.io/nimble-analyst-251123/api-container:tag27
+          imagePullPolicy: Always
+          env:
+            - name: MASTER_USER
+              valueFrom:
+                secretKeyRef:
+                  name: cloudsql-master-user
+                  key: username
+            - name: MASTER_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: cloudsql-master-password
+                  key: password
+            - name: CLOUDSQL_DBNAME
+              valueFrom:
+                secretKeyRef:
+                  name: cloudsql-db-name
+                  key: dbname
+          ports: # Exposeするポート
+            - containerPort: 9800
+        - name: cloudsql-proxy
+          image: gcr.io/cloudsql-docker/gce-proxy:1.09
+          command:
+            [
+              "/cloud_sql_proxy",
+              "--dir=/cloudsql",
+              "-instances=nimble-analyst-251123:asia-northeast1:postgre-test=tcp:5432",
+              "-credential_file=/secrets/cloudsql/credentials.json",
+            ]
+          volumeMounts:
+            - name: cloudsql-instance-credentials
+              mountPath: /secrets/cloudsql
+              readOnly: true
+            - name: ssl-certs
+              mountPath: /etc/ssl/certs
+            - name: cloudsql
+              mountPath: /cloudsql
+      volumes:
+        - name: cloudsql-instance-credentials
+          secret:
+            secretName: cloudsql-instance-credentials
+        - name: ssl-certs
+          hostPath:
+            path: /etc/ssl/certs
+        - name: cloudsql
+          emptyDir:

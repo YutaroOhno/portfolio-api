@@ -1,5 +1,4 @@
-
-version: '3'
+version: "3"
 services:
   db:
     image: postgres
@@ -24,9 +23,9 @@ services:
       TO_MAIL_ADDRESS: hoge@example.com
       ENV: local
     ports:
-      - '9800:9800'
-    tty:
-      true
+      - "9800:9800"
+      - "3306:3306"
+    tty: true
   mailhog:
     image: mailhog/mailhog
     ports:

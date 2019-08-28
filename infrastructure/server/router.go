@@ -3,7 +3,7 @@ package server
 import (
 	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
-	"os"
+	// "os"
 	"portfolio-api/infrastructure/db"
 	"portfolio-api/interfaces/api/contacts"
 	"portfolio-api/interfaces/api/profiles"
@@ -18,7 +18,7 @@ func Run(db *db.DB, logging logging.Logging, mailer mailer.Mailer) {
 
 	router.Use(cors.New(cors.Config{
 		//とりあえずフロントからのアクセスを許可したいので、記述。
-		AllowOrigins: []string{os.Getenv("CLIENT_ORIGIN")},
+		AllowOrigins: []string{"*"},
 		AllowMethods: []string{"GET", "PUT", "PATCH", "POST", "OPTIONS", "DELETE"},
 		AllowHeaders: []string{"Content-Type"},
 	}))
