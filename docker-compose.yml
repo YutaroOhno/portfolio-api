@@ -24,7 +24,6 @@ services:
       ENV: local
     ports:
       - "9800:9800"
-      - "3306:3306"
     tty: true
   mailhog:
     image: mailhog/mailhog
