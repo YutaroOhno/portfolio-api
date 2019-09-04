@@ -16,7 +16,7 @@ func NewPostgres() *Postgres {
 }
 
 func (postgres *Postgres) Open() *DB {
-
+	// 本番環境（heroku）を考慮
 	var (
 		connection string
 		err        error
@@ -34,8 +34,6 @@ func (postgres *Postgres) Open() *DB {
 	}
 
 	db, err := gorm.Open("postgres", connection)
-	defer db.Close()
-
 	if err != nil {
 		panic(err.Error())
 	}
