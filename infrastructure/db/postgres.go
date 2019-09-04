@@ -34,8 +34,7 @@ func (postgres *Postgres) Open() *DB {
 		connection = os.Getenv("DATABASE_URL")
 	}
 
-	connections := fmt.Sprintf("host=%s user=%s dbname=%s sslmode=disable password=%s", "127.0.0.1", os.Getenv("MASTER_USER"), os.Getenv("CLOUDSQL_DBNAME"), os.Getenv("MASTER_PASSWORD")) //Build connection string
-	db, err := gorm.Open("postgres", connections)
+	db, err := gorm.Open("postgres", connection)
 	defer db.Close()
 
 	if err != nil {
