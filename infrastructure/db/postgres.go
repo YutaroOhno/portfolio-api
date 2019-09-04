@@ -5,7 +5,6 @@ import (
 	_ "github.com/jinzhu/gorm/dialects/postgres"
 	"github.com/lib/pq"
 	"os"
-	"fmt"
 )
 
 type Postgres struct {
